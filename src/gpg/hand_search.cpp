@@ -138,7 +138,9 @@ std::vector<Grasp> HandSearch::reevaluateHypotheses(const CloudCamera& cloud_cam
       if (reevaluateHypothesis(nn_points, grasps[i], finger_hand, nn_points_frame))
       {
         // label the grasp
+        // std::cout << "labeling grasp " << i << "..." << std::endl;
         labels[i] = labelHypothesis(nn_points_frame, finger_hand);
+        // std::cout << "label: " << labels[i] << std::endl;
       }
     }
   }

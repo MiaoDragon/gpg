@@ -11,6 +11,10 @@ include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
+# BOOST
+find_package(Boost COMPONENTS thread REQUIRED)
+
+
 ## Set compiler optimization flags
 set(CMAKE_CXX_FLAGS "-O3 -fopenmp -fPIC -Wno-deprecated -Wenum-compare")
 # set(CMAKE_CXX_FLAGS "-O3 -fopenmp -march=native -mfpmath=sse -funroll-loops -fPIC -Wno-deprecated -Wenum-compare") # no improvement
@@ -79,7 +83,8 @@ target_link_libraries(${PROJECT_NAME}_local_frame
 target_link_libraries(${PROJECT_NAME}_plot 
                       ${PROJECT_NAME}_cloud_camera 
                       ${PROJECT_NAME}_grasp_set 
-                      ${PROJECT_NAME}_local_frame)
+                      ${PROJECT_NAME}_local_frame
+                      Boost::thread)
 
 target_link_libraries(${PROJECT_NAME}_grasp_candidates_generator 
                       ${PROJECT_NAME}_hand_search)
